@@ -9,12 +9,28 @@ class ProductService {
     async findOne(id) {
         return Product.findOne({ where: { id } })
     }
-    async create(product) {
-        return Product.create(product)
+    async create(product, storeId) {
+        console.log(product)
+        return Product.create({
+            name: product.name,
+            storeId: storeId,
+            description: product.description,
+            brand: product.brand,
+            price: product.price,
+            category: product.category,
+            stock: product.stock
+        })
     }
 
-    async update(id, product) {
-        return Product.update(product, { where: { id } })
+    async update(id, product, storeId) {
+        return Product.update({
+            name: product.name,
+            description: product.description,
+            brand: product.brand,
+            price: product.price,
+            category: product.category,
+            stock: product.stock
+        }, { where: { id, storeId } })
     }
 }
 

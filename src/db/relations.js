@@ -13,7 +13,7 @@ export const createRelations = async () => {
         Sell.hasMany(Cart, { foreignKey: 'sellId' })
         Status.hasMany(Sell, { foreignKey: 'statusId' })
         Sell.belongsTo(Status, { foreignKey: 'statusId' })
-        User.hasMany(Store, { foreignKey: 'userId' })
+        User.hasOne(Store, { foreignKey: 'userId' })
         Store.hasMany(Product, {
             foreignKey: 'storeId'
         })

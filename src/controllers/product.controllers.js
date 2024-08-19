@@ -16,9 +16,10 @@ export const getProducts = async (req, res) => {
 }
 
 export const createProduct = async (req, res) => {
+    const { id } = req.user.Store
     try {
         const product = req.body
-        const newProduct = await ProductService.create(product)
+        const newProduct = await ProductService.create(product, id)
         if (!newProduct) {
             throw ({
                 statusCode: 400,
@@ -32,10 +33,11 @@ export const createProduct = async (req, res) => {
 }
 
 export const updateProduct = async (req, res) => {
+    const { id } = req.user.Store
     try {
-        const id = req.params.id
-        const product = req.body
-        const updateProduct = await ProductService.update(id, product)
+        const { productId } = req.params;
+        const product = req.body;
+        const updateProduct = await ProductService.update(productId, product, id)
         if (!updateProduct) {
             throw ({
                 statusCode: 400,
