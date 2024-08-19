@@ -61,55 +61,7 @@ class CartService {
         }
     }
     // actualizar el estado de Sell por 3 (paid), eliminar los productos del carrito y actualizar el stock de los productos
-    async payCart(sellId) {
-        try {
-            const products = await Cart.findAll({
-                where: { sellId },
-                include: {
-                    model: Product,
-                    attributes: ['id', 'stock']
-                }
-            })
 
-            if (products.length === 0) {
-                throw ({
-                    statusCode: 404,
-                    message: "Carrito no encontrado"
-                })
-            }
-            const subtotal = 0
-            products.map(product => {
-                subtotal += product.Product.price * product.quantity;
-                const updatedStock = Product.update({ stock: product.Product.stock - product.quantity }, { where: { id: product.Product.id } });
-                if (updatedStock.length === 0) {
-                    throw ({
-                        statusCode: 400,
-                        message: "No se pudo actualizar el stock"
-                    })
-                }
-                const deletedCart = Cart.destroy({
-                    where: { productId: product.Product.id, sellId: products.sellId }
-                })
-                if (deletedCart.length === 0) {
-                    throw ({
-                        statusCode: 400,
-                        message: "Error al eliminar el carrito"
-                    })
-                }
-            })
-            const updatedSell = await Sell.update({ statusId: 3 }, { where: { id: sellId } })
-
-            if (updatedSell.length === 0) {
-                throw ({
-                    statusCode: 400,
-                    message: "Error al actualizar el estado de la venta"
-                })
-            }
-            return "Compra realizada con éxito"
-        } catch (error) {
-            throw error
-        }
-    }
 }
 
 export default new CartService()

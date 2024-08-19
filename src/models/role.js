@@ -17,8 +17,8 @@ export const Role = sequelize.define('Role', {
 export const createRoles = async () => {
     await Role.bulkCreate([
         { name: 'admin' },
+        { name: 'seller' },
         { name: 'client' },
-        { name: 'seller' }
     ])
     console.log('Roles created successfully.')
 }

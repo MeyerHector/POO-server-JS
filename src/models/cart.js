@@ -6,6 +6,10 @@ export const Cart = sequelize.define('Cart', {
         primaryKey: true,
         autoIncrement: true
     },
+    userId: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+    },
     sellId: {
         type: DataTypes.INTEGER,
         allowNull: false

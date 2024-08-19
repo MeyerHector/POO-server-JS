@@ -6,6 +6,14 @@ export const Sell = sequelize.define('Sell', {
         primaryKey: true,
         autoIncrement: true
     },
+    sellerId: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+    },
+    clientId: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+    },
     statusId: {
         type: DataTypes.INTEGER,
         allowNull: false
@@ -16,7 +24,8 @@ export const Sell = sequelize.define('Sell', {
     },
     discount: {
         type: DataTypes.DECIMAL,
-        allowNull: true
+        allowNull: false,
+        defaultValue: 0
     },
     taxes: {
         type: DataTypes.DECIMAL,
@@ -30,7 +39,6 @@ export const Sell = sequelize.define('Sell', {
         type: DataTypes.DECIMAL,
         allowNull: true
     },
-
     date: {
         type: DataTypes.DATE,
         defaultValue: DataTypes.NOW,

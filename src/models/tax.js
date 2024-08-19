@@ -20,7 +20,7 @@ export const Tax = sequelize.define('Tax', {
 export const createTaxes = async () => {
     await Tax.bulkCreate([
         { name: 'IVA', rate: 0.21 },
-        { name: 'Demas impuestos...', rate: 0.1 }
+        { name: 'Demas impuestos...', rate: 0.05 }
     ])
     console.log('Taxes created successfully.')
 }

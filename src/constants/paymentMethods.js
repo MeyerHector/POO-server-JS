@@ -1,0 +1,1 @@
+export const PAYMENT_METHODS = ['efectivo', 'tarjeta', 'transferencia', 'debito']
